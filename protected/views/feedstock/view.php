@@ -23,6 +23,7 @@
 	),
 )); 
 echo CHtml::link('Voltar','admin');
-echo CHtml::link('Aumentar',array("feedstock/estoque","id"=>$model->id)); 
+echo CHtml::link(' Aumentar ',array("feedstock/estoque","id"=>$model->id)); 
+echo CHtml::link('Diminuir',array("feedstock/estoque2","id"=>$model->id)); 
 
 ?>

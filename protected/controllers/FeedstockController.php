@@ -32,7 +32,7 @@ class FeedstockController extends Controller
 				'users'=>array('*'),
 			),
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
-				'actions'=>array('create','update','estoque',),
+				'actions'=>array('create','update','estoque', 'estoque2',),
 				'users'=>array('@'),
 			),
 			array('allow', // allow admin user to perform 'admin' and 'delete' actions
@@ -122,6 +122,24 @@ class FeedstockController extends Controller
 		));		
 	}
 
+public function actionEstoque2($id=1){
+		
+		
+		$model=$this->loadModel($id);
+		//$model->unsetAttributes();		
+		if(isset($_POST['Feedstock'])){
+			$quant = $_POST['quant'];
+			$model->attributes=$_POST['Feedstock'];
+			
+			if($model->save()){
+				$model->quantity-=$quant;
+				$model->update();
+			}
+		}
+		$this->render('estoque2',array(
+			'model'=>$model,
+		));		
+	}
 	/**
 	 * Deletes a particular model.
 	 * If deletion is successful, the browser will be redirected to the 'admin' page.

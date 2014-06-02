@@ -65,8 +65,8 @@ return array(
 		'db'=>array(
 			'connectionString' => 'mysql:host=localhost;dbname=comms318_vestibulum',
 			'emulatePrepare' => true,
-			'username' => 'comms318_lucas',
-			'password' => 'e$%Z*C4TNp[#',
+			'username' => 'root',
+			'password' => '123',
 			'charset' => 'utf8',
 		),
 		
