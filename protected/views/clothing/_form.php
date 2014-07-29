@@ -33,10 +33,25 @@
 		<?php echo $form->error($model,'description'); ?>
 	</div>
 
-	<div class="row">
+	<div class="row-fluid">
 	        <label>Feedstocks</label>
 	 
 	    <?php 	 
+    	
+    	/*echo $form->checkBox($model, 'feedstockIDs', array('uncheckValue'=>0));
+    	
+    	foreach ($feedstockList as $feedstockElement){
+    		echo CHtml::activeCheckBox($model,'feedstockIDs', 
+    			CHtml::listData( $feedstockElement , 
+	            'id', 
+	            'name'
+
+	        ));
+    	}
+    	*/
+    	?>
+    	<div class="span4">
+    	<?php
     	$feedstockList = Feedstock::model()->findAll();
     	echo CHtml::activeCheckBoxList($model, 'feedstockIDs', 
 	        CHtml::listData( $feedstockList , 
@@ -44,22 +59,28 @@
 	            'name'
 
 	        ));
-		
-				
 	        ?>
-	        <?php
+    	</div>
+    	<div class="span4">
+    		<?php
+		
+			 
 	        	for($i =0; $i< count ($feedstockList);$i++){
 	        		//echo $feedstockList[$i]->quantity;
 	        		echo CHtml::textField("quant[$i]",'');
 	        		echo "</br>";
+	        		echo "</br>";
 	        	}
+	        	
 	        ?>
+	       
 
 
 	 
 	    </div>
-
-
+	
+</div>
+	    <div class="span4">
 	<div class="form-actions">
 		<?php $this->widget('bootstrap.widgets.TbButton',array(
             'buttonType'=>'submit',
@@ -68,6 +89,7 @@
         )); ?>
 	</div>
 
-<?php $this->endWidget(); ?>
 
+<?php $this->endWidget(); ?>
+</div>
 </div><!-- form -->

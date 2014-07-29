@@ -66,29 +66,46 @@ class ClothingController extends Controller
 
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
-
+		
 		if(isset($_POST['Clothing']))
 		{
 			$model->attributes=$_POST['Clothing'];
 			$model->feedstocks=$_POST['Clothing']['feedstockIDs'];
 			$model->feedstockQuantity=$_POST['quant'];
+			$model->price = 0;
 			if($model->save()){
+				for($i=0;$i<count($model->feedstockQuantity);$i++){
+					for($j=0;$j<count($model->feedstockQuantity);$j++)
+					if($model->feedstockQuantity[$j]==''){
+						$aux = $model->feedstockQuantity[$j];
+						$model->feedstockQuantity[$j] = $model->feedstockQuantity[$i];
+						$model->feedstockQuantity[$i] = $aux;
+					}
+					
+				}
+				
 				for($i=0;$i<count($model->feedstocks);$i++){
 					
 					
 					$cF = ClothingHasFeedstock::model()->findByPk(array('clothing_id' => $model->id,'feedstock_id'=>$model->feedstocks[$i]));
 					$myFeedstock = Feedstock::model()->findByPk(array('id'=>$model->feedstocks[$i]));
-					$cF->clothing_has_feedstock_quantity = $model->feedstockQuantity[$i];
-					$model->price += $myFeedstock->price*$cF->clothing_has_feedstock_quantity;
+					$cF->save();
+					$cF->clothing_has_feedstock_quantity = $model->feedstockQuantity[$i];					
+					$model->price += $myFeedstock->price*$cF->clothing_has_feedstock_quantity;					
+					$cF->update();
+					$cF->save();
 					//if($cF->clothing_has_feedstock_quantity > $myFeedstock->quantity){
 					//	echo "<script>alert('message');</script>";
 					//}
 					//else{
-					$cF->update();
-					$model->update();
+					//$number.=(string)$cF->clothing_has_feedstock_quantity;
+					$model->update();					
 					//}
 				
 				}
+				//$model->description=$number;
+				$model->update();
+				$cF->update();
 				$this->redirect(array('view','id'=>$model->id));
 			}
 		}
@@ -114,8 +131,43 @@ class ClothingController extends Controller
 		{
 			$model->attributes=$_POST['Clothing'];
 			$model->feedstocks=$_POST['Clothing']['feedstockIDs'];
-			if($model->save())
+			$model->feedstockQuantity=$_POST['quant'];
+			$model->price = 0;
+			if($model->save()){
+				for($i=0;$i<count($model->feedstockQuantity);$i++){
+					for($j=0;$j<count($model->feedstockQuantity);$j++)
+					if($model->feedstockQuantity[$j]==''){
+						$aux = $model->feedstockQuantity[$j];
+						$model->feedstockQuantity[$j] = $model->feedstockQuantity[$i];
+						$model->feedstockQuantity[$i] = $aux;
+					}
+					
+				}
+				
+				for($i=0;$i<count($model->feedstocks);$i++){
+					
+					
+					$cF = ClothingHasFeedstock::model()->findByPk(array('clothing_id' => $model->id,'feedstock_id'=>$model->feedstocks[$i]));
+					$myFeedstock = Feedstock::model()->findByPk(array('id'=>$model->feedstocks[$i]));
+					$cF->save();
+					$cF->clothing_has_feedstock_quantity = $model->feedstockQuantity[$i];					
+					$model->price += $myFeedstock->price*$cF->clothing_has_feedstock_quantity;					
+					$cF->update();
+					$cF->save();
+					//if($cF->clothing_has_feedstock_quantity > $myFeedstock->quantity){
+					//	echo "<script>alert('message');</script>";
+					//}
+					//else{
+					//$number.=(string)$cF->clothing_has_feedstock_quantity;
+					$model->update();					
+					//}
+				
+				}
+				//$model->description=$number;
+				$model->update();
+				$cF->update();
 				$this->redirect(array('view','id'=>$model->id));
+			}
 		}
 
 		$this->render('update',array(
