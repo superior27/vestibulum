@@ -63,6 +63,7 @@ class ClothingController extends Controller
 	public function actionCreate()
 	{
 		$model=new Clothing;
+		//$name = "";
 
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
@@ -90,7 +91,7 @@ class ClothingController extends Controller
 					$cF = ClothingHasFeedstock::model()->findByPk(array('clothing_id' => $model->id,'feedstock_id'=>$model->feedstocks[$i]));
 					$myFeedstock = Feedstock::model()->findByPk(array('id'=>$model->feedstocks[$i]));
 					$cF->save();
-					$cF->clothing_has_feedstock_quantity = $model->feedstockQuantity[$i];					
+					$cF->clothing_has_feedstock_quantity = $model->feedstockQuantity[$i];										
 					$model->price += $myFeedstock->price*$cF->clothing_has_feedstock_quantity;					
 					$cF->update();
 					$cF->save();
@@ -103,7 +104,7 @@ class ClothingController extends Controller
 					//}
 				
 				}
-				//$model->description=$number;
+				//$model->description=$name;
 				$model->update();
 				$cF->update();
 				$this->redirect(array('view','id'=>$model->id));
@@ -123,6 +124,7 @@ class ClothingController extends Controller
 	public function actionUpdate($id)
 	{
 		$model=$this->loadModel($id);
+		
 
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
@@ -146,14 +148,28 @@ class ClothingController extends Controller
 				
 				for($i=0;$i<count($model->feedstocks);$i++){
 					
+					$transaction = Yii::app()->db->beginTransaction();
 					
-					$cF = ClothingHasFeedstock::model()->findByPk(array('clothing_id' => $model->id,'feedstock_id'=>$model->feedstocks[$i]));
-					$myFeedstock = Feedstock::model()->findByPk(array('id'=>$model->feedstocks[$i]));
-					$cF->save();
-					$cF->clothing_has_feedstock_quantity = $model->feedstockQuantity[$i];					
-					$model->price += $myFeedstock->price*$cF->clothing_has_feedstock_quantity;					
-					$cF->update();
-					$cF->save();
+					//$cF->save();
+					$myFeedstock = Feedstock::model()->findByPk(array('id'=>$model->feedstocks[$i]));					
+										
+					//$cF->update();
+					//$cF->save();
+					try 
+					{
+						$cF = ClothingHasFeedstock::model()->findByPk(array('clothing_id' => $model->id,'feedstock_id'=>$model->feedstocks[$i]));						
+						$cF->clothing_has_feedstock_quantity = $model->feedstockQuantity[$i];
+						$cF->save();
+						$transaction->commit();
+						
+					}
+					catch (Exception $e)
+					{
+						$transaction->rollBack();
+						
+					}
+					$model->price += $myFeedstock->price*$cF->clothing_has_feedstock_quantity; 
+
 					//if($cF->clothing_has_feedstock_quantity > $myFeedstock->quantity){
 					//	echo "<script>alert('message');</script>";
 					//}
