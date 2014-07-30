@@ -52,12 +52,11 @@
 	</br>
 	</br>
 	</br>
-	<div id="footer">
-		Criado por  <!--<?php echo date('Y'); ?>--> CommSystem.<br/>
-		Todos os direitos reservados.<br/>
-		<?php echo Yii::powered(); ?>
+	<div id="footer1">
+		Copyright &copy; <?php echo date('Y'); ?> CommSystem.<br/>
+		Todos os Direitos Reservados.<br/><a href="http://azmind.com">CommSystem</a>.</p>
+		
 	</div><!-- footer -->
-
 </div><!-- page -->
 
 </body>
