@@ -21,11 +21,16 @@
 
 	
 	<div class="row">
-		<?php echo $form->labelEx($model,'quantity'); ?>
+		<?php echo "Quantidade Atual"; ?>
+		<br />
 		<?php echo $form->textField($model,'quantity'); ?>
 		<?php echo $form->error($model,'quantity'); ?>
 	</div>
-	<?php echo CHtml::textField("quant"); ?>
+	<div class="row">
+		<?php echo "Quantidade a ser Acrescentada";?>
+		<br />
+		<?php echo CHtml::textField("quant"); ?>
+	</div>
 
 	<div class="form-actions">
 		<?php $this->widget('bootstrap.widgets.TbButton',array(

@@ -2,11 +2,7 @@
 /* @var $this RequestController */
 /* @var $model Request */
 
-$this->breadcrumbs=array(
-	'Requests'=>array('index'),
-	$model->id=>array('view','id'=>$model->id),
-	'Update',
-);
+
 
 $this->menu=array(
 	array('label'=>'List Request', 'url'=>array('index')),
@@ -16,6 +12,6 @@ $this->menu=array(
 );
 ?>
 
-<h1>Update Request <?php echo $model->id; ?></h1>
+<h1>Atualizar Pedido #<?php echo $model->description; ?></h1>
 
 <?php $this->renderPartial('_form', array('model'=>$model)); ?>

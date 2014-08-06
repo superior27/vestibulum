@@ -6,6 +6,7 @@
  * The followings are the available columns in table 'request':
  * @property integer $id
  * @property double $price
+ * @property string $description
  *
  * The followings are the available model relations:
  * @property Monitoring[] $monitorings
@@ -17,14 +18,15 @@ class Request extends CActiveRecord
 	 * @return string the associated database table name
 	 */
 	public $clothingIDs = array();
-	//public $clothingNames = array();
-	//public $clothingQuantity = array();
+	public $clothingNames = array();
+	public $clothingQuantity = array();
 	//public $clothingSize = array();
 
 	public function afterFind(){
 		if(!empty($this->clothings)){
 			foreach($this->clothings as $clothing){
 				$this->clothingIDs[]=$clothing->id;
+				$this->clothingNames[]=$clothing->name;
 				
 				
 			}
@@ -53,9 +55,10 @@ class Request extends CActiveRecord
 		return array(
 			array('price', 'required'),
 			array('price', 'numerical'),
+			array('description', 'length', 'max'=>255),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, price', 'safe', 'on'=>'search'),
+			array('id, price, description', 'safe', 'on'=>'search'),
 			//array('clothingIDs', 'unsafe'),
 		);
 	}
@@ -81,6 +84,7 @@ class Request extends CActiveRecord
 		return array(
 			'id' => 'ID',
 			'price' => 'Preço',
+			'description'=>"Descrição"
 		);
 	}
 

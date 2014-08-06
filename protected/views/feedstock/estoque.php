@@ -6,5 +6,6 @@
 ?>
 
 <h1>Atualizar Quantidade <?php echo $model->name; ?></h1>
-
+<br />
+<br />
 <?php $this->renderPartial('_estoque', array('model'=>$model)); ?>

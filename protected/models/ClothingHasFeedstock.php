@@ -31,7 +31,8 @@ class ClothingHasFeedstock extends CActiveRecord
 			array('clothing_has_feedstock_quantity', 'numerical'),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('clothing_id, feedstock_id, clothing_has_feedstock_quantity', 'safe', 'on'=>'search'),
+			array('clothing_id, feedstock_id', 'safe', 'on'=>'search'),
+
 		);
 	}
 

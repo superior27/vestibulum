@@ -21,9 +21,32 @@
 		'providerName',
 		
 	),
-)); 
-echo CHtml::link('Voltar','admin');
-echo CHtml::link(' Aumentar ',array("feedstock/estoque","id"=>$model->id)); 
-echo CHtml::link('Diminuir',array("feedstock/estoque2","id"=>$model->id)); 
-
+));
 ?>
+<div class="row-fluid">
+	<div class="span4">
+		<br />
+		<?php
+			echo CHtml::link('Voltar','admin',array("class"=>"btn btn-large"));
+		?>
+	</div>
+
+	<div class="span6">
+		<div class="offset10">
+		<br />
+		<?php
+			echo CHtml::link('Diminuir',array("feedstock/estoque2","id"=>$model->id),array("class"=>"btn btn-large btn-danger")); 
+		?>
+	</div>
+	</div>
+	<div class="span2">
+		<div class="offset3">
+			<br />
+		<?php
+			echo CHtml::link('Aumentar',array("feedstock/estoque","id"=>$model->id),array("class"=>"btn btn-large btn-success")); 
+		?>
+	</div>
+	</div>
+</div>
+
+

@@ -20,14 +20,13 @@
     'items'=>array(
         array(
             'class'=>'bootstrap.widgets.TbMenu',
-            'items'=>array(
-                array('label'=>'Home', 'url'=>array('/site/index')),
-                array('label'=>'Sobre', 'url'=>array('/site/page', 'view'=>'about')),
+            'items'=>array(                
 				array('label'=>'Usuário', 'url'=>array('/user/admin')),
 				array('label'=>'Fornecedor', 'url'=>array('/provider/admin')),
 				array('label'=>'Matéria-Prima', 'url'=>array('/feedstock/admin')),
 				array('label'=>'Peças', 'url'=>array('/clothing/admin')),
-                array('label'=>'Contato', 'url'=>array('/site/contact')),
+                array('label'=>'Pedido', 'url'=>array('/request/admin')),
+                array('label'=>'Acompanhamento', 'url'=>array('/monitoring/admin')),
                 array('label'=>'Login', 'url'=>array('/site/login'), 'visible'=>Yii::app()->user->isGuest),
                 array('label'=>'Logout ('.Yii::app()->user->name.')', 'url'=>array('/site/logout'), 'visible'=>!Yii::app()->user->isGuest)
             ),

@@ -16,15 +16,19 @@
 )); ?>
 
 	<p class="note">Fields with <span class="required">*</span> are required.</p>
-
+<br/>
 	<?php echo $form->errorSummary($model); ?>
-
-	<div class="row">
-		<?php echo $form->labelEx($model,'price'); ?>
-		<?php echo $form->textField($model,'price'); ?>
-		<?php echo $form->error($model,'price'); ?>
+<div class="row-fluid">
+		<?php echo $form->labelEx($model,'description'); ?>
+		<?php echo $form->textField($model,'description',array('size'=>255,'maxlength'=>255)); ?>
+		<?php echo $form->error($model,'description'); ?>
 	</div>
-	<div>
+	
+	<div class="row-fluid">
+	<div class="span4">
+		<h3>
+			Peças
+		</h3>
 	
 	<?php
     	$clothingList = Clothing::model()->findAll();
@@ -35,7 +39,41 @@
 
 	        ));
 	        ?>
-	        </div>
+	   
+    </div>
+	
+	<div class="span4">
+		<h3>
+			Quantidade
+		</h3>
+		<br/>
+    <?php
+		
+			 
+	        	for($i=0; $i< count ($clothingList);$i++){
+	        		//echo $feedstockList[$i]->quantity;
+	        		echo CHtml::textField("quant[$i]",'');
+	        		echo "<br/>";
+	        		echo "<br/>";
+	        		
+	        		
+
+
+	        		
+	        		
+	        	
+	        		
+
+	        		
+	        		
+	        	}
+	        	
+	        ?>
+    </div>
+
+
+    
+</div>
 
 	<div class="row buttons">
 		<?php echo CHtml::submitButton($model->isNewRecord ? 'Create' : 'Save'); ?>

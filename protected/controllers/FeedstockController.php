@@ -103,7 +103,7 @@ class FeedstockController extends Controller
 		));
 	}
 
-	public function actionEstoque($id=1){
+	public function actionEstoque($id){
 		
 		
 		$model=$this->loadModel($id);
@@ -115,6 +115,7 @@ class FeedstockController extends Controller
 			if($model->save()){
 				$model->quantity+=$quant;
 				$model->update();
+				$this->redirect(array('view','id'=>$model->id));
 			}
 		}
 		$this->render('estoque',array(
@@ -122,7 +123,7 @@ class FeedstockController extends Controller
 		));		
 	}
 
-public function actionEstoque2($id=1){
+public function actionEstoque2($id){
 		
 		
 		$model=$this->loadModel($id);
@@ -134,6 +135,7 @@ public function actionEstoque2($id=1){
 			if($model->save()){
 				$model->quantity-=$quant;
 				$model->update();
+				$this->redirect(array('view','id'=>$model->id));
 			}
 		}
 		$this->render('estoque2',array(

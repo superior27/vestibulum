@@ -6,7 +6,7 @@ class RequestController extends Controller
 	 * @var string the default layout for the views. Defaults to '//layouts/column2', meaning
 	 * using two-column layout. See 'protected/views/layouts/column2.php'.
 	 */
-	public $layout='//layouts/column2';
+	public $layout='//layouts/column1';
 
 	/**
 	 * @return array action filters
@@ -70,8 +70,44 @@ class RequestController extends Controller
 		if(isset($_POST['Request']))
 		{
 			$model->attributes=$_POST['Request'];
-			if($model->save())
+			$model->clothings=$_POST['Request']['clothingIDs'];
+			$model->clothingQuantity=$_POST['quant'];
+			$model->price = 0;
+			if($model->save()){
+				for($i=0;$i<count($model->clothingQuantity);$i++){
+					for($j=0;$j<count($model->clothingQuantity);$j++){
+					if($model->clothingQuantity[$j]==''){
+						$aux = $model->clothingQuantity[$j];
+						$model->clothingQuantity[$j] = $model->clothingQuantity[$i];
+						$model->clothingQuantity[$i] = $aux;
+					}
+				}
+			}
+				for($i=0;$i<count($model->clothings);$i++){
+					
+					$model->save();
+					$requestHasClothing = RequestHasClothing::model()->findByPk(array('request_id' => $model->id,'clothing_id'=>$model->clothings[$i]));
+					
+					$requestHasClothing->quantity = $model->clothingQuantity[$i];
+					$requestHasClothing->save();
+					$myClothing = Clothing::model()->findByPk(array('id'=>$model->clothings[$i]));
+					//$cF->save();															
+					$model->price += $myClothing->price*$requestHasClothing->quantity;					
+					//$cF->update();
+					$requestHasClothing->save();
+					//$name.=(string)$requestHasClothing->clothing_has_feedstock_quantity." ";
+					//if($cF->clothing_has_feedstock_quantity > $myFeedstock->quantity){
+					//	echo "<script>alert('message');</script>";
+					//}
+					//else{
+					//$number.=(string)$cF->clothing_has_feedstock_quantity;
+					$model->save();					
+					//}
+				
+				}
+
 				$this->redirect(array('view','id'=>$model->id));
+			}
 		}
 
 		$this->render('create',array(
@@ -93,10 +129,45 @@ class RequestController extends Controller
 
 		if(isset($_POST['Request']))
 		{
-			$model->attributes=$_POST['Request'];			
+			$model->attributes=$_POST['Request'];
 			$model->clothings=$_POST['Request']['clothingIDs'];
-			if($model->save())
+			$model->clothingQuantity=$_POST['quant'];
+			$model->price = 0;
+			if($model->save()){
+				for($i=0;$i<count($model->clothingQuantity);$i++){
+					for($j=0;$j<count($model->clothingQuantity);$j++){
+					if($model->clothingQuantity[$j]==''){
+						$aux = $model->clothingQuantity[$j];
+						$model->clothingQuantity[$j] = $model->clothingQuantity[$i];
+						$model->clothingQuantity[$i] = $aux;
+					}
+				}
+			}
+				for($i=0;$i<count($model->clothings);$i++){
+					
+					$model->save();
+					$requestHasClothing = RequestHasClothing::model()->findByPk(array('request_id' => $model->id,'clothing_id'=>$model->clothings[$i]));
+					
+					$requestHasClothing->quantity = $model->clothingQuantity[$i];
+					$requestHasClothing->save();
+					$myClothing = Clothing::model()->findByPk(array('id'=>$model->clothings[$i]));
+					//$cF->save();															
+					$model->price += $myClothing->price*$requestHasClothing->quantity;					
+					//$cF->update();
+					$requestHasClothing->save();
+					//$name.=(string)$requestHasClothing->clothing_has_feedstock_quantity." ";
+					//if($cF->clothing_has_feedstock_quantity > $myFeedstock->quantity){
+					//	echo "<script>alert('message');</script>";
+					//}
+					//else{
+					//$number.=(string)$cF->clothing_has_feedstock_quantity;
+					$model->save();					
+					//}
+				
+				}
+
 				$this->redirect(array('view','id'=>$model->id));
+			}
 		}
 
 		$this->render('update',array(

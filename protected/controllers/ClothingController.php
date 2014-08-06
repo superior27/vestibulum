@@ -63,7 +63,7 @@ class ClothingController extends Controller
 	public function actionCreate()
 	{
 		$model=new Clothing;
-		//$name = "";
+		$name = "";
 
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
@@ -87,26 +87,31 @@ class ClothingController extends Controller
 				
 				for($i=0;$i<count($model->feedstocks);$i++){
 					
-					
+					$model->save();
 					$cF = ClothingHasFeedstock::model()->findByPk(array('clothing_id' => $model->id,'feedstock_id'=>$model->feedstocks[$i]));
+					
+					$cF->clothing_has_feedstock_quantity = $model->feedstockQuantity[$i];
+					$cF->save();
 					$myFeedstock = Feedstock::model()->findByPk(array('id'=>$model->feedstocks[$i]));
-					$cF->save();
-					$cF->clothing_has_feedstock_quantity = $model->feedstockQuantity[$i];										
+					//$cF->save();															
 					$model->price += $myFeedstock->price*$cF->clothing_has_feedstock_quantity;					
-					$cF->update();
+					//$cF->update();
 					$cF->save();
+					$name.=(string)$cF->clothing_has_feedstock_quantity." ";
 					//if($cF->clothing_has_feedstock_quantity > $myFeedstock->quantity){
 					//	echo "<script>alert('message');</script>";
 					//}
 					//else{
 					//$number.=(string)$cF->clothing_has_feedstock_quantity;
-					$model->update();					
+					$model->save();					
 					//}
 				
 				}
+				
 				//$model->description=$name;
 				$model->update();
-				$cF->update();
+				
+				
 				$this->redirect(array('view','id'=>$model->id));
 			}
 		}
@@ -146,7 +151,7 @@ class ClothingController extends Controller
 					
 				}
 				
-				for($i=0;$i<count($model->feedstocks);$i++){
+				for($i=0;$i<count($model->feedstockQuantity);$i++){
 					
 					$transaction = Yii::app()->db->beginTransaction();
 					

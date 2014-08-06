@@ -28,6 +28,21 @@
  */
 class Monitoring extends CActiveRecord
 {
+
+	public $requestDescription;
+
+	public function afterFind(){
+		if(!empty($this->request)){
+			
+				$this->requestDescription=$this->request->description;
+				
+				//$this->feedstockQuantity[]=$feedstock->
+			
+
+		}
+
+	}
+
 	/**
 	 * @return string the associated database table name
 	 */
@@ -44,7 +59,7 @@ class Monitoring extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('seam_quantity_input, seam_quantity_output, seam_service_provider, seam_cost, wash_quantity_input, wash_quantity_output, wash_service_provider, wash_cost, apply_button_quantity_input, apply_button_quantity_output, apply_button_service_provider, apply_button_cost, needlework_quantity_input, needlework_quantity_output, needlework_service_provider, needlework_cost, request_id', 'required'),
+			array('request_id', 'required'),
 			array('seam_quantity_input, seam_quantity_output, wash_quantity_input, wash_quantity_output, apply_button_quantity_input, apply_button_quantity_output, needlework_quantity_input, needlework_quantity_output, request_id', 'numerical', 'integerOnly'=>true),
 			array('seam_cost, wash_cost, apply_button_cost, needlework_cost', 'numerical'),
 			array('seam_service_provider, wash_service_provider, apply_button_service_provider, needlework_service_provider', 'length', 'max'=>255),
@@ -73,23 +88,24 @@ class Monitoring extends CActiveRecord
 	{
 		return array(
 			'id' => 'ID',
-			'seam_quantity_input' => 'Seam Quantity Input',
-			'seam_quantity_output' => 'Seam Quantity Output',
-			'seam_service_provider' => 'Seam Service Provider',
-			'seam_cost' => 'Seam Cost',
-			'wash_quantity_input' => 'Wash Quantity Input',
-			'wash_quantity_output' => 'Wash Quantity Output',
-			'wash_service_provider' => 'Wash Service Provider',
-			'wash_cost' => 'Wash Cost',
-			'apply_button_quantity_input' => 'Apply Button Quantity Input',
-			'apply_button_quantity_output' => 'Apply Button Quantity Output',
-			'apply_button_service_provider' => 'Apply Button Service Provider',
-			'apply_button_cost' => 'Apply Button Cost',
-			'needlework_quantity_input' => 'Needlework Quantity Input',
-			'needlework_quantity_output' => 'Needlework Quantity Output',
-			'needlework_service_provider' => 'Needlework Service Provider',
-			'needlework_cost' => 'Needlework Cost',
-			'request_id' => 'Request',
+			'seam_quantity_input' => 'Quantidade de Entrada da Costura',
+			'seam_quantity_output' => 'Quantidade de Saída da Costura',
+			'seam_service_provider' => 'Prestador de Serviço da Costura',
+			'seam_cost' => 'Custo da Costura',
+			'wash_quantity_input' => 'Quantidade de Entrada da Lavagem',
+			'wash_quantity_output' => 'Quantidade de Saída da Lavagem',
+			'wash_service_provider' => 'Prestador de Serviço da Lavagem',
+			'wash_cost' => 'Custo da Lavagem',
+			'apply_button_quantity_input' => 'Quantidade de Entrada da Traveto',
+			'apply_button_quantity_output' => 'Quantidade de Saída da Traveto',
+			'apply_button_service_provider' => 'Prestador de Serviço da Traveto',
+			'apply_button_cost' => 'Custo do Traveto',
+			'needlework_quantity_input' => 'Quantidade de Entrada do Bordado',
+			'needlework_quantity_output' => 'Quantidade de Saída do Bordado',
+			'needlework_service_provider' => 'Prestador de Serviço do Bordado',
+			'needlework_cost' => 'Custo do Bordado',
+			'request_id' => 'ID do Pedido',
+			'requestDescription' => 'Descrição do Pedido',
 		);
 	}
 
