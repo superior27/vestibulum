@@ -15,7 +15,7 @@
 	'enableAjaxValidation'=>false,
 )); ?>
 
-	<p class="note">Fields with <span class="required">*</span> are required.</p>
+	<p class="note">Os campos com <span class="required">*</span> são obrigatórios.</p>
 <br/>
 	<?php echo $form->errorSummary($model); ?>
 <div class="row-fluid">
@@ -75,10 +75,14 @@
     
 </div>
 
-	<div class="row buttons">
-		<?php echo CHtml::submitButton($model->isNewRecord ? 'Create' : 'Save'); ?>
+	<div class="row-fluid">
+		<?php $this->widget('bootstrap.widgets.TbButton', array(
+            'buttonType'=>'submit',
+            'type'=>'primary',
+            'label'=>'Cadastrar',
+            'size'=>'large',
+        )); ?>
 	</div>
-
 <?php $this->endWidget(); ?>
 
 </div><!-- form -->

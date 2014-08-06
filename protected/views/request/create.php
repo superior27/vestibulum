@@ -3,8 +3,8 @@
 /* @var $model Request */
 
 $this->breadcrumbs=array(
-	'Requests'=>array('index'),
-	'Create',
+	'Pedido'=>array('index'),
+	'Cadastrar',
 );
 
 $this->menu=array(
@@ -13,6 +13,6 @@ $this->menu=array(
 );
 ?>
 
-<h1>Create Request</h1>
+<h1>Cadastrar Pedido</h1>
 
 <?php $this->renderPartial('_form', array('model'=>$model)); ?>
