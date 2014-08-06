@@ -27,7 +27,7 @@ Você pode, opcionalmente, digitar um operador de comparação (<b>&lt;</b>, <b>
 ou <b>=</b>) no início de cada um dos seus valores de pesquisa para especificar como a comparação deve ser feita.
 </p>
 
-<?php echo CHtml::link('Cadastrar Usuário','create'); ?>
+<?php echo CHtml::link('Cadastrar Usuário','create',array("class"=>"btn btn-large btn-success")); ?>
 <div class="search-form" style="display:none">
 <?php $this->renderPartial('_search',array(
 	'model'=>$model,
