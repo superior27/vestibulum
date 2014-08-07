@@ -29,7 +29,7 @@ $this->breadcrumbs=array(
 	<?php echo $form->textFieldRow($model,'username'); ?>
 
 	<?php echo $form->passwordFieldRow($model,'password',array(
-        'hint'=>'Você pode fazer o login com <kbd>demo</kbd>/<kbd>demo</kbd> ou <kbd>admin</kbd>/<kbd>admin</kbd>',
+        
     )); ?>
 
 	<?php echo $form->checkBoxRow($model,'rememberMe'); ?>

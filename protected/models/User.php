@@ -97,4 +97,9 @@ class User extends CActiveRecord
 	{
 		return parent::model($className);
 	}
+
+	public function beforeSave(){
+		$this->password = sha1($this->password);
+		return parent::beforeSave();
+	}
 }

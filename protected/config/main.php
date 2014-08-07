@@ -39,6 +39,12 @@ return array(
 
 	// application components
 	'components'=>array(
+
+		'authManager'=>array(
+			"class"=>"CDbAuthManager",
+			"connectionID"=>"db",
+			),
+		
 		'user'=>array(
 			// enable cookie-based authentication
 			'allowAutoLogin'=>true,
@@ -65,8 +71,8 @@ return array(
 		'db'=>array(
 			'connectionString' => 'mysql:host=localhost;dbname=comms318_vestibulum',
 			'emulatePrepare' => true,
-			'username' => 'root',
-			'password' => '123',
+			'username' => 'comms318_lucas',
+			'password' => 'e$%Z*C4TNp[#',
 			'charset' => 'utf8',
 		),
 		

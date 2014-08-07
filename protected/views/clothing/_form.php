@@ -58,6 +58,17 @@
 	            'id', 
 	            'name'
 
+	        ),array(
+	        'separator'=>'',
+	        'labelOptions'=>array(
+            'style'=> '
+                padding-left:13px;
+                width: 60px;
+                height: 35px;
+                
+            '),
+          'style'=>'float:left;',
+                          
 	        ));
 	        ?>
     	</div>

@@ -2,10 +2,7 @@
 /* @var $this RequestController */
 /* @var $model Request */
 
-$this->breadcrumbs=array(
-	'Pedido'=>array('index'),
-	'Cadastrar',
-);
+
 
 $this->menu=array(
 	array('label'=>'List Request', 'url'=>array('index')),

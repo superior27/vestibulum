@@ -28,16 +28,17 @@ class UserController extends Controller
 	{
 		return array(
 			array('allow',  // allow all users to perform 'index' and 'view' actions
-				'actions'=>array('index','view'),
+				'actions'=>array('index',),
 				'users'=>array('*'),
 			),
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
-				'actions'=>array('create','update'),
-				'users'=>array('@'),
+				'actions'=>array('create','update','admin','delete','assign',),
+				'roles'=>array('admin',),
+
 			),
 			array('allow', // allow admin user to perform 'admin' and 'delete' actions
-				'actions'=>array('admin','delete'),
-				'users'=>array('admin'),
+				'actions'=>array('view',),
+				'users'=>array('@'),
 			),
 			array('deny',  // deny all users
 				'users'=>array('*'),
@@ -122,6 +123,8 @@ class UserController extends Controller
 	 */
 	public function actionIndex()
 	{
+		//Yii::app()->authManager->createRole("admin");
+		//Yii::app()->authManager->assign("admin",2);
 		$dataProvider=new CActiveDataProvider('User');
 		$this->render('index',array(
 			'dataProvider'=>$dataProvider,
@@ -133,6 +136,8 @@ class UserController extends Controller
 	 */
 	public function actionAdmin()
 	{
+
+
 		$model=new User('search');
 		$model->unsetAttributes();  // clear any default values
 		if(isset($_GET['User']))
@@ -156,6 +161,19 @@ class UserController extends Controller
 		if($model===null)
 			throw new CHttpException(404,'The requested page does not exist.');
 		return $model;
+	}
+
+	public function actionAssign($id)
+	{
+		if(Yii::app()->authManager->checkAccess($_GET["item"],$id))
+		{
+			Yii::app()->authManager->revoke($_GET["item"],$id);
+		}
+		else
+		{
+			Yii::app()->authManager->assign($_GET["item"],$id);
+		}
+		$this->redirect(array("view","id"=>$id));
 	}
 
 	/**
