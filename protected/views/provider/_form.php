@@ -42,9 +42,13 @@
 		<?php echo $form->textField($model,'email',array('size'=>45,'maxlength'=>45)); ?>
 		<?php echo $form->error($model,'email'); ?>
 	</div>
-
-	<div class="row buttons">
-		<?php echo CHtml::submitButton($model->isNewRecord ? 'Create' : 'Save'); ?>
+<div class="row-fluid">
+		<?php $this->widget('bootstrap.widgets.TbButton', array(
+            'buttonType'=>'submit',
+            'type'=>'primary',
+            'label'=>'Cadastrar',
+            'size'=>'large',
+        )); ?>
 	</div>
 
 <?php $this->endWidget(); ?>
