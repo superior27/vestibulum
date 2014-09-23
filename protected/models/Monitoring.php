@@ -7,42 +7,70 @@
  * @property integer $id
  * @property integer $seam_quantity_input
  * @property integer $seam_quantity_output
- * @property string $seam_service_provider
  * @property double $seam_cost
  * @property integer $wash_quantity_input
  * @property integer $wash_quantity_output
- * @property string $wash_service_provider
  * @property double $wash_cost
  * @property integer $apply_button_quantity_input
  * @property integer $apply_button_quantity_output
- * @property string $apply_button_service_provider
  * @property double $apply_button_cost
  * @property integer $needlework_quantity_input
  * @property integer $needlework_quantity_output
- * @property string $needlework_service_provider
  * @property double $needlework_cost
  * @property integer $request_id
+ * @property integer $cut_quantity_input
+ * @property integer $cut_quantity_output
+ * @property string $cut_date_input
+ * @property string $cut_date_output
+ * @property integer $cut_provider_id
+ * @property integer $separation_quantity_input
+ * @property integer $separation_quantity_output
+ * @property string $separation_date_input
+ * @property string $separation_date_output
+ * @property integer $separation_provider_id
+ * @property double $cut_cost
+ * @property double $separation_cost
+ * @property string $needlework_date_input
+ * @property string $needlework_date_output
+ * @property integer $needlework_provider_id
+ * @property string $seam_date_input
+ * @property string $seam_date_output
+ * @property integer $seam_provider_id
+ * @property string $apply_button_date_input
+ * @property string $apply_button_date_output
+ * @property integer $apply_button_provider_id
+ * @property string $wash_date_input
+ * @property string $wash_date_output
+ * @property string $wash_type_washing
+ * @property string $wash_differential
+ * @property integer $wash_provider_id
+ * @property integer $expedition_quantity_input
+ * @property integer $expedition_quantity_output
+ * @property string $expedition_date_input
+ * @property string $expedition_date_output
+ * @property integer $expedition_defects
+ * @property integer $expedition_provider_id
+ * @property integer $production_order
+ * @property integer $record_number
+ * @property string $reference
+ * @property integer $quantity_36
+ * @property integer $quantity_38
+ * @property integer $quantity_40
+ * @property integer $quantity_42
+ * @property integer $quantity_44
  *
  * The followings are the available model relations:
  * @property Request $request
+ * @property Provider $cutProvider
+ * @property Provider $separationProvider
+ * @property Provider $needleworkProvider
+ * @property Provider $seamProvider
+ * @property Provider $applyButtonProvider
+ * @property Provider $washProvider
+ * @property Provider $expeditionProvider
  */
 class Monitoring extends CActiveRecord
 {
-
-	public $requestDescription;
-
-	public function afterFind(){
-		if(!empty($this->request)){
-			
-				$this->requestDescription=$this->request->description;
-				
-				//$this->feedstockQuantity[]=$feedstock->
-			
-
-		}
-
-	}
-
 	/**
 	 * @return string the associated database table name
 	 */
@@ -59,13 +87,15 @@ class Monitoring extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('request_id', 'required'),
-			array('seam_quantity_input, seam_quantity_output, wash_quantity_input, wash_quantity_output, apply_button_quantity_input, apply_button_quantity_output, needlework_quantity_input, needlework_quantity_output, request_id', 'numerical', 'integerOnly'=>true),
-			array('seam_cost, wash_cost, apply_button_cost, needlework_cost', 'numerical'),
-			array('seam_service_provider, wash_service_provider, apply_button_service_provider, needlework_service_provider', 'length', 'max'=>255),
+			array('seam_quantity_input, seam_quantity_output, seam_cost, wash_quantity_input, wash_quantity_output, wash_cost, apply_button_quantity_input, apply_button_quantity_output, apply_button_cost, needlework_quantity_input, needlework_quantity_output, needlework_cost, request_id', 'required'),
+			array('seam_quantity_input, seam_quantity_output, wash_quantity_input, wash_quantity_output, apply_button_quantity_input, apply_button_quantity_output, needlework_quantity_input, needlework_quantity_output, request_id, cut_quantity_input, cut_quantity_output, cut_provider_id, separation_quantity_input, separation_quantity_output, separation_provider_id, needlework_provider_id, seam_provider_id, apply_button_provider_id, wash_provider_id, expedition_quantity_input, expedition_quantity_output, expedition_defects, expedition_provider_id, production_order, record_number, quantity_36, quantity_38, quantity_40, quantity_42, quantity_44', 'numerical', 'integerOnly'=>true),
+			array('seam_cost, wash_cost, apply_button_cost, needlework_cost, cut_cost, separation_cost', 'numerical'),
+			array('wash_type_washing, wash_differential', 'length', 'max'=>255),
+			array('reference', 'length', 'max'=>45),
+			array('cut_date_input, cut_date_output, separation_date_input, separation_date_output, needlework_date_input, needlework_date_output, seam_date_input, seam_date_output, apply_button_date_input, apply_button_date_output, wash_date_input, wash_date_output, expedition_date_input, expedition_date_output', 'safe'),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, seam_quantity_input, seam_quantity_output, seam_service_provider, seam_cost, wash_quantity_input, wash_quantity_output, wash_service_provider, wash_cost, apply_button_quantity_input, apply_button_quantity_output, apply_button_service_provider, apply_button_cost, needlework_quantity_input, needlework_quantity_output, needlework_service_provider, needlework_cost, request_id', 'safe', 'on'=>'search'),
+			array('id, seam_quantity_input, seam_quantity_output, seam_cost, wash_quantity_input, wash_quantity_output, wash_cost, apply_button_quantity_input, apply_button_quantity_output, apply_button_cost, needlework_quantity_input, needlework_quantity_output, needlework_cost, request_id, cut_quantity_input, cut_quantity_output, cut_date_input, cut_date_output, cut_provider_id, separation_quantity_input, separation_quantity_output, separation_date_input, separation_date_output, separation_provider_id, cut_cost, separation_cost, needlework_date_input, needlework_date_output, needlework_provider_id, seam_date_input, seam_date_output, seam_provider_id, apply_button_date_input, apply_button_date_output, apply_button_provider_id, wash_date_input, wash_date_output, wash_type_washing, wash_differential, wash_provider_id, expedition_quantity_input, expedition_quantity_output, expedition_date_input, expedition_date_output, expedition_defects, expedition_provider_id, production_order, record_number, reference, quantity_36, quantity_38, quantity_40, quantity_42, quantity_44', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -78,6 +108,13 @@ class Monitoring extends CActiveRecord
 		// class name for the relations automatically generated below.
 		return array(
 			'request' => array(self::BELONGS_TO, 'Request', 'request_id'),
+			'cutProvider' => array(self::BELONGS_TO, 'Provider', 'cut_provider_id'),
+			'separationProvider' => array(self::BELONGS_TO, 'Provider', 'separation_provider_id'),
+			'needleworkProvider' => array(self::BELONGS_TO, 'Provider', 'needlework_provider_id'),
+			'seamProvider' => array(self::BELONGS_TO, 'Provider', 'seam_provider_id'),
+			'applyButtonProvider' => array(self::BELONGS_TO, 'Provider', 'apply_button_provider_id'),
+			'washProvider' => array(self::BELONGS_TO, 'Provider', 'wash_provider_id'),
+			'expeditionProvider' => array(self::BELONGS_TO, 'Provider', 'expedition_provider_id'),
 		);
 	}
 
@@ -88,24 +125,59 @@ class Monitoring extends CActiveRecord
 	{
 		return array(
 			'id' => 'ID',
-			'seam_quantity_input' => 'Quantidade de Entrada da Costura',
-			'seam_quantity_output' => 'Quantidade de Saída da Costura',
-			'seam_service_provider' => 'Prestador de Serviço da Costura',
-			'seam_cost' => 'Custo da Costura',
-			'wash_quantity_input' => 'Quantidade de Entrada da Lavagem',
-			'wash_quantity_output' => 'Quantidade de Saída da Lavagem',
-			'wash_service_provider' => 'Prestador de Serviço da Lavagem',
-			'wash_cost' => 'Custo da Lavagem',
-			'apply_button_quantity_input' => 'Quantidade de Entrada da Traveto',
-			'apply_button_quantity_output' => 'Quantidade de Saída da Traveto',
-			'apply_button_service_provider' => 'Prestador de Serviço da Traveto',
-			'apply_button_cost' => 'Custo do Traveto',
-			'needlework_quantity_input' => 'Quantidade de Entrada do Bordado',
-			'needlework_quantity_output' => 'Quantidade de Saída do Bordado',
-			'needlework_service_provider' => 'Prestador de Serviço do Bordado',
-			'needlework_cost' => 'Custo do Bordado',
-			'request_id' => 'ID do Pedido',
-			'requestDescription' => 'Descrição do Pedido',
+			'seam_quantity_input' => 'Seam Quantity Input',
+			'seam_quantity_output' => 'Seam Quantity Output',
+			'seam_cost' => 'Seam Cost',
+			'wash_quantity_input' => 'Wash Quantity Input',
+			'wash_quantity_output' => 'Wash Quantity Output',
+			'wash_cost' => 'Wash Cost',
+			'apply_button_quantity_input' => 'Apply Button Quantity Input',
+			'apply_button_quantity_output' => 'Apply Button Quantity Output',
+			'apply_button_cost' => 'Apply Button Cost',
+			'needlework_quantity_input' => 'Needlework Quantity Input',
+			'needlework_quantity_output' => 'Needlework Quantity Output',
+			'needlework_cost' => 'Needlework Cost',
+			'request_id' => 'Request',
+			'cut_quantity_input' => 'Cut Quantity Input',
+			'cut_quantity_output' => 'Cut Quantity Output',
+			'cut_date_input' => 'Cut Date Input',
+			'cut_date_output' => 'Cut Date Output',
+			'cut_provider_id' => 'Cut Provider',
+			'separation_quantity_input' => 'Separation Quantity Input',
+			'separation_quantity_output' => 'Separation Quantity Output',
+			'separation_date_input' => 'Separation Date Input',
+			'separation_date_output' => 'Separation Date Output',
+			'separation_provider_id' => 'Separation Provider',
+			'cut_cost' => 'Cut Cost',
+			'separation_cost' => 'Separation Cost',
+			'needlework_date_input' => 'Needlework Date Input',
+			'needlework_date_output' => 'Needlework Date Output',
+			'needlework_provider_id' => 'Needlework Provider',
+			'seam_date_input' => 'Seam Date Input',
+			'seam_date_output' => 'Seam Date Output',
+			'seam_provider_id' => 'Seam Provider',
+			'apply_button_date_input' => 'Apply Button Date Input',
+			'apply_button_date_output' => 'Apply Button Date Output',
+			'apply_button_provider_id' => 'Apply Button Provider',
+			'wash_date_input' => 'Wash Date Input',
+			'wash_date_output' => 'Wash Date Output',
+			'wash_type_washing' => 'Wash Type Washing',
+			'wash_differential' => 'Wash Differential',
+			'wash_provider_id' => 'Wash Provider',
+			'expedition_quantity_input' => 'Expedition Quantity Input',
+			'expedition_quantity_output' => 'Expedition Quantity Output',
+			'expedition_date_input' => 'Expedition Date Input',
+			'expedition_date_output' => 'Expedition Date Output',
+			'expedition_defects' => 'Expedition Defects',
+			'expedition_provider_id' => 'Expedition Provider',
+			'production_order' => 'Production Order',
+			'record_number' => 'Record Number',
+			'reference' => 'Reference',
+			'quantity_36' => 'Quantity 36',
+			'quantity_38' => 'Quantity 38',
+			'quantity_40' => 'Quantity 40',
+			'quantity_42' => 'Quantity 42',
+			'quantity_44' => 'Quantity 44',
 		);
 	}
 
@@ -130,21 +202,57 @@ class Monitoring extends CActiveRecord
 		$criteria->compare('id',$this->id);
 		$criteria->compare('seam_quantity_input',$this->seam_quantity_input);
 		$criteria->compare('seam_quantity_output',$this->seam_quantity_output);
-		$criteria->compare('seam_service_provider',$this->seam_service_provider,true);
 		$criteria->compare('seam_cost',$this->seam_cost);
 		$criteria->compare('wash_quantity_input',$this->wash_quantity_input);
 		$criteria->compare('wash_quantity_output',$this->wash_quantity_output);
-		$criteria->compare('wash_service_provider',$this->wash_service_provider,true);
 		$criteria->compare('wash_cost',$this->wash_cost);
 		$criteria->compare('apply_button_quantity_input',$this->apply_button_quantity_input);
 		$criteria->compare('apply_button_quantity_output',$this->apply_button_quantity_output);
-		$criteria->compare('apply_button_service_provider',$this->apply_button_service_provider,true);
 		$criteria->compare('apply_button_cost',$this->apply_button_cost);
 		$criteria->compare('needlework_quantity_input',$this->needlework_quantity_input);
 		$criteria->compare('needlework_quantity_output',$this->needlework_quantity_output);
-		$criteria->compare('needlework_service_provider',$this->needlework_service_provider,true);
 		$criteria->compare('needlework_cost',$this->needlework_cost);
 		$criteria->compare('request_id',$this->request_id);
+		$criteria->compare('cut_quantity_input',$this->cut_quantity_input);
+		$criteria->compare('cut_quantity_output',$this->cut_quantity_output);
+		$criteria->compare('cut_date_input',$this->cut_date_input,true);
+		$criteria->compare('cut_date_output',$this->cut_date_output,true);
+		$criteria->compare('cut_provider_id',$this->cut_provider_id);
+		$criteria->compare('separation_quantity_input',$this->separation_quantity_input);
+		$criteria->compare('separation_quantity_output',$this->separation_quantity_output);
+		$criteria->compare('separation_date_input',$this->separation_date_input,true);
+		$criteria->compare('separation_date_output',$this->separation_date_output,true);
+		$criteria->compare('separation_provider_id',$this->separation_provider_id);
+		$criteria->compare('cut_cost',$this->cut_cost);
+		$criteria->compare('separation_cost',$this->separation_cost);
+		$criteria->compare('needlework_date_input',$this->needlework_date_input,true);
+		$criteria->compare('needlework_date_output',$this->needlework_date_output,true);
+		$criteria->compare('needlework_provider_id',$this->needlework_provider_id);
+		$criteria->compare('seam_date_input',$this->seam_date_input,true);
+		$criteria->compare('seam_date_output',$this->seam_date_output,true);
+		$criteria->compare('seam_provider_id',$this->seam_provider_id);
+		$criteria->compare('apply_button_date_input',$this->apply_button_date_input,true);
+		$criteria->compare('apply_button_date_output',$this->apply_button_date_output,true);
+		$criteria->compare('apply_button_provider_id',$this->apply_button_provider_id);
+		$criteria->compare('wash_date_input',$this->wash_date_input,true);
+		$criteria->compare('wash_date_output',$this->wash_date_output,true);
+		$criteria->compare('wash_type_washing',$this->wash_type_washing,true);
+		$criteria->compare('wash_differential',$this->wash_differential,true);
+		$criteria->compare('wash_provider_id',$this->wash_provider_id);
+		$criteria->compare('expedition_quantity_input',$this->expedition_quantity_input);
+		$criteria->compare('expedition_quantity_output',$this->expedition_quantity_output);
+		$criteria->compare('expedition_date_input',$this->expedition_date_input,true);
+		$criteria->compare('expedition_date_output',$this->expedition_date_output,true);
+		$criteria->compare('expedition_defects',$this->expedition_defects);
+		$criteria->compare('expedition_provider_id',$this->expedition_provider_id);
+		$criteria->compare('production_order',$this->production_order);
+		$criteria->compare('record_number',$this->record_number);
+		$criteria->compare('reference',$this->reference,true);
+		$criteria->compare('quantity_36',$this->quantity_36);
+		$criteria->compare('quantity_38',$this->quantity_38);
+		$criteria->compare('quantity_40',$this->quantity_40);
+		$criteria->compare('quantity_42',$this->quantity_42);
+		$criteria->compare('quantity_44',$this->quantity_44);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,

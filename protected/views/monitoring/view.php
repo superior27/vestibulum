@@ -2,7 +2,10 @@
 /* @var $this MonitoringController */
 /* @var $model Monitoring */
 
-
+$this->breadcrumbs=array(
+	'Monitorings'=>array('index'),
+	$model->id,
+);
 
 $this->menu=array(
 	array('label'=>'List Monitoring', 'url'=>array('index')),
@@ -13,41 +16,64 @@ $this->menu=array(
 );
 ?>
 
-<h1>Acompanhamento #<?php echo $model->requestDescription; ?></h1>
+<h1>View Monitoring #<?php echo $model->id; ?></h1>
 
 <?php $this->widget('zii.widgets.CDetailView', array(
 	'data'=>$model,
 	'attributes'=>array(
 		'id',
-		'requestDescription',		
-		'seam_service_provider',
-		'seam_cost',		
-		'wash_service_provider',
+		'seam_quantity_input',
+		'seam_quantity_output',
+		'seam_cost',
+		'wash_quantity_input',
+		'wash_quantity_output',
 		'wash_cost',
-		'apply_button_service_provider',
+		'apply_button_quantity_input',
+		'apply_button_quantity_output',
 		'apply_button_cost',
-		'needlework_service_provider',
+		'needlework_quantity_input',
+		'needlework_quantity_output',
 		'needlework_cost',
-		
+		'request_id',
+		'cut_quantity_input',
+		'cut_quantity_output',
+		'cut_date_input',
+		'cut_date_output',
+		'cut_provider_id',
+		'separation_quantity_input',
+		'separation_quantity_output',
+		'separation_date_input',
+		'separation_date_output',
+		'separation_provider_id',
+		'cut_cost',
+		'separation_cost',
+		'needlework_date_input',
+		'needlework_date_output',
+		'needlework_provider_id',
+		'seam_date_input',
+		'seam_date_output',
+		'seam_provider_id',
+		'apply_button_date_input',
+		'apply_button_date_output',
+		'apply_button_provider_id',
+		'wash_date_input',
+		'wash_date_output',
+		'wash_type_washing',
+		'wash_differential',
+		'wash_provider_id',
+		'expedition_quantity_input',
+		'expedition_quantity_output',
+		'expedition_date_input',
+		'expedition_date_output',
+		'expedition_defects',
+		'expedition_provider_id',
+		'production_order',
+		'record_number',
+		'reference',
+		'quantity_36',
+		'quantity_38',
+		'quantity_40',
+		'quantity_42',
+		'quantity_44',
 	),
-)); 
-?>
-
-<div class="row-fluid">
-	<div class="span4">
-		<br />
-		<?php
-			echo CHtml::link('Voltar','admin',array("class"=>"btn btn-large"));
-		?>
-	</div>
-
-	<div class="span8">
-		<div class="offset10">
-		<br />
-		<?php
-			echo CHtml::link('Relatorio ',array("monitoring/relatorio","id"=>$model->id),array("class"=>"btn btn-large btn-success")); 
-		?>
-		</div>
-	</div>
-	
-</div>
+)); ?>

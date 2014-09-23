@@ -13,6 +13,6 @@ $this->menu=array(
 );
 ?>
 
-<h1>Cadastrar Acompanhamento</h1>
+<h1>Create Monitoring</h1>
 
 <?php $this->renderPartial('_form', array('model'=>$model)); ?>
