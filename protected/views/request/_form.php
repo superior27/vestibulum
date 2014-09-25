@@ -36,18 +36,6 @@
 	        CHtml::listData($clothingList, 
 	            'id', 
 	            'name'
-
-	        ),array(
-	        'separator'=>'',
-	        'labelOptions'=>array(
-            'style'=> '
-                padding-left:13px;
-                width: 60px;
-                height: 35px;
-                
-            '),
-          'style'=>'float:left;',
-                          
 	        ));
 	        ?>
 	   
@@ -57,18 +45,15 @@
 		<h3>
 			Quantidade
 		</h3>
-		
+		<br/>
     <?php
 		
 			 
 	        	for($i=0; $i< count ($clothingList);$i++){
 	        		//echo $feedstockList[$i]->quantity;
-	        		
 	        		echo CHtml::textField("quant[$i]",'');
 	        		echo "<br/>";
-	        		
-	        		
-	        		
+	        		echo "<br/>";
 	        		
 	        		
 
@@ -88,8 +73,7 @@
 
     
 </div>
-
-	<div class="row-fluid">
+		<div class="row-fluid">
 		<?php $this->widget('bootstrap.widgets.TbButton', array(
             'buttonType'=>'submit',
             'type'=>'primary',
