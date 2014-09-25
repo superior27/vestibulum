@@ -103,6 +103,12 @@
 			<?php echo $form->error($model,'client'); ?>
 		</div>
 
+		<div class="row-fluid">
+			<?php echo $form->labelEx($model,'client_cnpj'); ?>
+			<?php echo $form->textField($model,'client_cnpj'); ?>
+			<?php echo $form->error($model,'client_cnpj'); ?>
+		</div>
+
 				</div>
 
 				<div class="tab-pane" id="tab2">
@@ -441,9 +447,14 @@
 
 		
 
-		<div class="row-fluid buttons">
-			<?php echo CHtml::submitButton($model->isNewRecord ? 'Create' : 'Save'); ?>
-		</div>
+		<div class="row-fluid">
+		<?php $this->widget('bootstrap.widgets.TbButton', array(
+            'buttonType'=>'submit',
+            'type'=>'primary',
+            'label'=>'Cadastrar',
+            'size'=>'large',
+        )); ?>
+	</div>
 
 		<?php $this->endWidget(); ?>
 
