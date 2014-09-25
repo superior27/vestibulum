@@ -58,6 +58,8 @@
  * @property integer $quantity_40
  * @property integer $quantity_42
  * @property integer $quantity_44
+ * @property string $client
+ * @property double $expedition_cost
  *
  * The followings are the available model relations:
  * @property Request $request
@@ -89,8 +91,8 @@ class Monitoring extends CActiveRecord
 		return array(
 			array('seam_quantity_input, seam_quantity_output, seam_cost, wash_quantity_input, wash_quantity_output, wash_cost, apply_button_quantity_input, apply_button_quantity_output, apply_button_cost, needlework_quantity_input, needlework_quantity_output, needlework_cost, request_id', 'required'),
 			array('seam_quantity_input, seam_quantity_output, wash_quantity_input, wash_quantity_output, apply_button_quantity_input, apply_button_quantity_output, needlework_quantity_input, needlework_quantity_output, request_id, cut_quantity_input, cut_quantity_output, cut_provider_id, separation_quantity_input, separation_quantity_output, separation_provider_id, needlework_provider_id, seam_provider_id, apply_button_provider_id, wash_provider_id, expedition_quantity_input, expedition_quantity_output, expedition_defects, expedition_provider_id, production_order, record_number, quantity_36, quantity_38, quantity_40, quantity_42, quantity_44', 'numerical', 'integerOnly'=>true),
-			array('seam_cost, wash_cost, apply_button_cost, needlework_cost, cut_cost, separation_cost', 'numerical'),
-			array('wash_type_washing, wash_differential', 'length', 'max'=>255),
+			array('seam_cost, wash_cost, apply_button_cost, needlework_cost, cut_cost, separation_cost, expedition_cost', 'numerical'),
+			array('wash_type_washing, wash_differential, client', 'length', 'max'=>255),
 			array('reference', 'length', 'max'=>45),
 			array('cut_date_input, cut_date_output, separation_date_input, separation_date_output, needlework_date_input, needlework_date_output, seam_date_input, seam_date_output, apply_button_date_input, apply_button_date_output, wash_date_input, wash_date_output, expedition_date_input, expedition_date_output', 'safe'),
 			// The following rule is used by search().
@@ -178,6 +180,8 @@ class Monitoring extends CActiveRecord
 			'quantity_40' => 'Quantity 40',
 			'quantity_42' => 'Quantity 42',
 			'quantity_44' => 'Quantity 44',
+			'client' => 'Client',
+			'expedition_cost' => 'Expedition Cost',
 		);
 	}
 
@@ -253,6 +257,8 @@ class Monitoring extends CActiveRecord
 		$criteria->compare('quantity_40',$this->quantity_40);
 		$criteria->compare('quantity_42',$this->quantity_42);
 		$criteria->compare('quantity_44',$this->quantity_44);
+		$criteria->compare('expedition_cost',$this->expedition_cost);
+		$criteria->compare('client',$this->client);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
