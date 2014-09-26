@@ -35,7 +35,7 @@ class Provider extends CActiveRecord
 			array('name, address, phone_number, email', 'length', 'max'=>45),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, name, address, phone_number, email', 'safe', 'on'=>'search'),
+			array('id, name, address, phone_number, email, cnpj', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -62,6 +62,7 @@ class Provider extends CActiveRecord
 			'address' => 'Endereço',
 			'phone_number' => 'Telefone',
 			'email' => 'Email',
+			'cnpj' => 'CNPJ',
 		);
 	}
 
@@ -88,6 +89,7 @@ class Provider extends CActiveRecord
 		$criteria->compare('address',$this->address,true);
 		$criteria->compare('phone_number',$this->phone_number,true);
 		$criteria->compare('email',$this->email,true);
+		$criteria->compare('cnpj',$this->cnpj,true);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,

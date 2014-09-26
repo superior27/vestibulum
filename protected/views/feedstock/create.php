@@ -1,6 +1,6 @@
 <?php
 /* @var $this FeedstockController */
-/* @var $model Feedstock */
+/* @var $model Feedstock 
 
 $this->breadcrumbs=array(
 	'Feedstocks'=>array('index'),
@@ -11,6 +11,7 @@ $this->menu=array(
 	array('label'=>'Listar Matéria-Prima', 'url'=>array('index')),
 	array('label'=>'Alterar Matéria-Prima', 'url'=>array('admin')),
 );
+*/
 ?>
 
 <h1>Cadastrar Matéria-Prima</h1>

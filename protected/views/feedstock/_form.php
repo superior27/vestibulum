@@ -19,31 +19,32 @@
 
 	<?php echo $form->errorSummary($model); ?>
 
-	<div class="row">
+	<div class="row-fluid">
 		<?php echo $form->labelEx($model,'name'); ?>
 		<?php echo $form->textField($model,'name',array('size'=>45,'maxlength'=>45)); ?>
 		<?php echo $form->error($model,'name'); ?>
 	</div>
 
-	<div class="row">
+	<div class="row-fluid">
 		<?php echo $form->labelEx($model,'price'); ?>
 		<?php echo $form->textField($model,'price'); ?>
 		<?php echo $form->error($model,'price'); ?>
 	</div>
 
-	<div class="row">
+	<div class="row-fluid">
 		<?php echo $form->labelEx($model,'quantity'); ?>
 		<?php echo $form->textField($model,'quantity'); ?>
 		<?php echo $form->error($model,'quantity'); ?>
 	</div>
 
-	<div class="row">
+	<div class="row-fluid">
 		<?php echo $form->labelEx($model,'description'); ?>
 		<?php echo $form->textField($model,'description',array('size'=>45,'maxlength'=>45)); ?>
 		<?php echo $form->error($model,'description'); ?>
 	</div>
 
-	<div class="row">
+	<div class="row-fluid">
+		<?php echo $form->labelEx($model,'provider_id'); ?>
 
 <?php
 		echo CHtml::activeDropDownList(
@@ -57,13 +58,15 @@
 		<?php echo $form->textField($model,'provider_id'); ?>
 		<?php echo $form->error($model,'provider_id'); ?> -->
 	</div>
+	<br/>
 
-	<div class="form-actions">
-		<?php $this->widget('bootstrap.widgets.TbButton',array(
-            'buttonType'=>'submit',
-            'type'=>'info',
-            'label'=>'Cadastrar',
-        )); ?>
+	<div class="row-fluid">
+		<?php $this->widget('bootstrap.widgets.TbButton', array(
+			'buttonType'=>'submit',
+			'type'=>'primary',
+			'label'=>'Cadastrar',
+			'size'=>'large',
+			)); ?>
 	</div>
 
 <?php $this->endWidget(); ?>

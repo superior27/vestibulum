@@ -1,7 +1,7 @@
 <?php
 /* @var $this MonitoringController */
 /* @var $model Monitoring */
-
+/*
 $this->breadcrumbs=array(
 	'Monitorings'=>array('index'),
 	'Manage',
@@ -11,7 +11,7 @@ $this->menu=array(
 	array('label'=>'List Monitoring', 'url'=>array('index')),
 	array('label'=>'Create Monitoring', 'url'=>array('create')),
 );
-
+*/
 Yii::app()->clientScript->registerScript('search', "
 $('.search-button').click(function(){
 	$('.search-form').toggle();
@@ -26,32 +26,34 @@ $('.search-form form').submit(function(){
 ");
 ?>
 
-<h1>Manage Monitorings</h1>
+<h1>Meus Acompanhamentos</h1>
 
 <p>
-You may optionally enter a comparison operator (<b>&lt;</b>, <b>&lt;=</b>, <b>&gt;</b>, <b>&gt;=</b>, <b>&lt;&gt;</b>
-or <b>=</b>) at the beginning of each of your search values to specify how the comparison should be done.
+Você pode, opcionalmente, digitar um operador de comparação (<b>&lt;</b>, <b>&lt;=</b>, <b>&gt;</b>, <b>&gt;=</b>, <b>&lt;&gt;</b>
+ou <b>=</b>) no início de cada um dos seus valores de pesquisa para especificar como a comparação deve ser feita.
 </p>
 
-<?php echo CHtml::link('Advanced Search','#',array('class'=>'search-button')); ?>
+<!--<?php echo CHtml::link('Advanced Search','#',array('class'=>'search-button')); ?>
 <div class="search-form" style="display:none">
 <?php $this->renderPartial('_search',array(
 	'model'=>$model,
 )); ?>
 </div><!-- search-form -->
+<?php echo CHtml::link('Novo Acompanhamento','create',array("class"=>"btn btn-large btn-success")); ?>
 
-<?php $this->widget('zii.widgets.grid.CGridView', array(
-	'id'=>'monitoring-grid',
+<?php $this->widget('bootstrap.widgets.TbGridView', array(
+	'type'=>'striped bordered condensed',
+	'id'=>'feedstock-grid',
 	'dataProvider'=>$model->search(),
 	'filter'=>$model,
 	'columns'=>array(
+		/*
 		'id',
 		'seam_quantity_input',
 		'seam_quantity_output',
 		'seam_cost',
 		'wash_quantity_input',
-		'wash_quantity_output',
-		/*
+		'wash_quantity_output',		
 		'wash_cost',
 		'apply_button_quantity_input',
 		'apply_button_quantity_output',
@@ -91,18 +93,23 @@ or <b>=</b>) at the beginning of each of your search values to specify how the c
 		'expedition_date_input',
 		'expedition_date_output',
 		'expedition_defects',
-		'expedition_provider_id',
-		'production_order',
-		'record_number',
-		'reference',
+		'expedition_provider_id',		
 		'quantity_36',
 		'quantity_38',
 		'quantity_40',
 		'quantity_42',
 		'quantity_44',
+
 		*/
+		'production_order',
+		'record_number',
+		'reference',
+		'client',
+		'client_cnpj',
+
 		array(
-			'class'=>'CButtonColumn',
+			'class'=>'bootstrap.widgets.TbButtonColumn',
+            'htmlOptions'=>array('style'=>'width: 50px'),
 		),
 	),
 )); ?>

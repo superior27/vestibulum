@@ -110,6 +110,7 @@
 
 
 				</div>
+				<br/>
 
 				<div class="row-fluid">
 					<?php $this->widget('bootstrap.widgets.TbButton', array(

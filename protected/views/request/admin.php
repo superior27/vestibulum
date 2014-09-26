@@ -44,10 +44,13 @@ ou <b>=</b>) no início de cada um dos seus valores de pesquisa para especificar
 	'id'=>'request-grid',
 	'dataProvider'=>$model->search(),
 	'filter'=>$model,
-	'columns'=>array(
-		'id',
+	'columns'=>array(		
 		'description',
-		'price',
+		'production_order',
+		'record_number',
+		'reference',
+		'client_name',
+		
 		array(
 			'class'=>'bootstrap.widgets.TbButtonColumn',
             'htmlOptions'=>array('style'=>'width: 50px'),

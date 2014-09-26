@@ -34,7 +34,7 @@
 	</div>
 
 	<div class="row-fluid">
-	        <label>Feedstocks</label>
+	        
 	 
 	    <?php 	 
     	
@@ -51,6 +51,9 @@
     	*/
     	?>
     	<div class="span4">
+    		<h3>
+    			Matérias-primas
+    		</h3>
     	<?php
     	$feedstockList = Feedstock::model()->findAll();
     	echo CHtml::activeCheckBoxList($model, 'feedstockIDs', 
@@ -73,6 +76,7 @@
 	        ?>
     	</div>
     	<div class="span4">
+    		<h3>Quantidades</h3>
     		<?php
 		
 			 
@@ -80,7 +84,7 @@
 	        		//echo $feedstockList[$i]->quantity;
 	        		echo CHtml::textField("quant[$i]",'');
 	        		echo "</br>";
-	        		echo "</br>";
+	        		
 	        	}
 	        	
 	        ?>
@@ -91,16 +95,14 @@
 	    </div>
 	
 </div>
-	    <div class="span4">
-	<div class="form-actions">
-		<?php $this->widget('bootstrap.widgets.TbButton',array(
-            'buttonType'=>'submit',
-            'type'=>'info',
-            'label'=>'Cadastrar',
-        )); ?>
-	</div>
-
-
-<?php $this->endWidget(); ?>
-</div>
+<br/>
+	    <div class="row-fluid">
+					<?php $this->widget('bootstrap.widgets.TbButton', array(
+						'buttonType'=>'submit',
+						'type'=>'primary',
+						'label'=>'Cadastrar',
+						'size'=>'large',
+						)); ?>
+					</div>
+					<?php $this->endWidget(); ?>
 </div><!-- form -->
