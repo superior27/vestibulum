@@ -84,7 +84,13 @@ class Request extends CActiveRecord
 		return array(
 			'id' => 'ID',
 			'price' => 'Preço',
-			'description'=>"Descrição"
+			'description'=>"Descrição",
+			'production_order'=>'Ordem de Produção',
+			'record_number'=>'Número de Registros',
+			'reference'=>'Referência',
+			'client_name'=>'Nome do Cliente',
+			'client_cnpj'=>'CNPJ',
+			'date'=>'Data'
 		);
 	}
 

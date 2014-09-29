@@ -79,6 +79,7 @@ class Clothing extends CActiveRecord
 			'price' => 'Preço',
 			'description' => 'Descrição',
 			'feedstock_id' => 'Matéria-prima',
+			
 		);
 	}
 

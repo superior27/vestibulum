@@ -15,7 +15,7 @@
 		'enableAjaxValidation'=>false,
 		)); ?>
 
-		<p class="note">Fields with <span class="required">*</span> are required.</p>
+		<p class="note">Os campos com <span class="required">*</span> são obrigatórios.</p>
 
 		<?php echo $form->errorSummary($model); ?>
 
@@ -23,15 +23,14 @@
 
 			<ul class="nav nav-tabs">
 
-				<li class="active"><a href="#tab1" data-toggle="tab">Seção 1</a></li>
-				<li><a href="#tab2" data-toggle="tab">Seção 2</a></li>
-				<li><a href="#tab3" data-toggle="tab">Seção 3</a></li>
-				<li><a href="#tab4" data-toggle="tab">Seção 4</a></li>
-				<li><a href="#tab5" data-toggle="tab">Seção 5</a></li>
-				<li><a href="#tab6" data-toggle="tab">Seção 6</a></li>
-				<li><a href="#tab7" data-toggle="tab">Seção 7</a></li>
-				<li><a href="#tab8" data-toggle="tab">Seção 8</a></li>
-				<li><a href="#tab9" data-toggle="tab">Seção 9</a></li>
+				<li class="active"><a href="#tab1" data-toggle="tab">Pedido</a></li>
+				<li><a href="#tab2" data-toggle="tab">Corte</a></li>
+				<li><a href="#tab3" data-toggle="tab">Separação</a></li>
+				<li><a href="#tab4" data-toggle="tab">Bordado</a></li>
+				<li><a href="#tab5" data-toggle="tab">Costura</a></li>
+				<li><a href="#tab6" data-toggle="tab">Travetto</a></li>
+				<li><a href="#tab7" data-toggle="tab">Lavagem</a></li>
+				<li><a href="#tab8" data-toggle="tab">Expedição</a></li>
 			</ul>
 
 			<div class="tab-content">

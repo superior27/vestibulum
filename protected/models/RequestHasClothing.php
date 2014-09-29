@@ -53,10 +53,10 @@ class RequestHasClothing extends CActiveRecord
 	public function attributeLabels()
 	{
 		return array(
-			'request_id' => 'Request',
-			'clothing_id' => 'Clothing',
-			'quantity' => 'Quantity',
-			'size' => 'Size',
+			'request_id' => 'Pedido',
+			'clothing_id' => 'Peça',
+			'quantity' => 'Quantidade',
+			'size' => 'Tamanho',
 		);
 	}
 
