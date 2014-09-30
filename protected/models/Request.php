@@ -53,12 +53,12 @@ class Request extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('price', 'required'),
+			array('price, client_name, client_cnpj', 'required'),
 			array('price', 'numerical'),
-			array('description', 'length', 'max'=>255),
+			array('description, production_order, record_number, reference, client_name, client_cnpj', 'length', 'max'=>255),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, price, description', 'safe', 'on'=>'search'),
+			array('id, price, description, production_order, record_number, reference, client_name, client_cnpj', 'safe', 'on'=>'search'),
 			//array('clothingIDs', 'unsafe'),
 		);
 	}
@@ -86,11 +86,11 @@ class Request extends CActiveRecord
 			'price' => 'Preço',
 			'description'=>"Descrição",
 			'production_order'=>'Ordem de Produção',
-			'record_number'=>'Número de Registros',
+			'record_number'=>'Número do Registro',
 			'reference'=>'Referência',
 			'client_name'=>'Nome do Cliente',
-			'client_cnpj'=>'CNPJ',
-			'date'=>'Data'
+			'client_cnpj'=>'CNPJ do Cliente',
+			'date'=>'Data',
 		);
 	}
 
@@ -114,6 +114,13 @@ class Request extends CActiveRecord
 
 		$criteria->compare('id',$this->id);
 		$criteria->compare('price',$this->price);
+		$criteria->compare('description',$this->description);
+		$criteria->compare('production_order',$this->production_order);
+		$criteria->compare('record_number',$this->record_number);
+		$criteria->compare('reference',$this->reference);
+		$criteria->compare('client_name',$this->client_name);
+		$criteria->compare('client_cnpj',$this->client_cnpj);
+		$criteria->compare('date',$this->date);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,

@@ -50,6 +50,7 @@ ou <b>=</b>) no início de cada um dos seus valores de pesquisa para especificar
 		'record_number',
 		'reference',
 		'client_name',
+		'client_cnpj',
 		
 		array(
 			'class'=>'bootstrap.widgets.TbButtonColumn',

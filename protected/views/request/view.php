@@ -18,8 +18,12 @@ $this->menu=array(
 <?php $this->widget('zii.widgets.CDetailView', array(
 	'data'=>$model,
 	'attributes'=>array(
-		'id',
-		'description',
+		'description',				
+		'production_order',
+		'record_number',
+		'reference',
+		'client_name',
+		'client_cnpj',
 		'price',
 	),
 )); ?>
